@@ -136,7 +136,6 @@
 #define USETFT
 //
 #include <ESP8266WiFi.h>
-#include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <AsyncMqttClient.h>
 #include <SPI.h>
@@ -147,7 +146,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <FS.h>
-#include <ArduinoOTA.h>
+//#include <ArduinoOTA.h>
 #include <TinyXML.h>
 
 extern "C"
@@ -1879,9 +1878,10 @@ void setup()
   cmdserver.begin() ;                                  // Start Web Server
   if ( NetworkFound )                                  // OTA and MQTT only if Wifi network found
   {
-   ArduinoOTA.setHostname ( NAME ) ;                   // Set the hostname
-   ArduinoOTA.onStart ( otastart ) ;
-   ArduinoOTA.begin() ;                                // Allow update over the air
+//   ArduinoOTA.setHostname ( NAME ) ;                   // Set the hostname
+//   ArduinoOTA.setPort(8080);
+//   ArduinoOTA.onStart ( otastart ) ;
+//   ArduinoOTA.begin() ;                                // Allow update over the air
     if ( ini_block.mqttbroker.length() )               // Broker specified?
     {
       // Initialize the MQTT client
@@ -2242,7 +2242,7 @@ void loop()
     testfilename = "" ;                                 // Clear test request
   }
   scanserial() ;                                        // Handle serial input
-  ArduinoOTA.handle() ;                                 // Check for OTA
+//  ArduinoOTA.handle() ;                                 // Check for OTA
 }
 
 
